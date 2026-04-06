@@ -1,14 +1,288 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My First Site</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutan Glam Zone | Lakmé Academy Certified Artist</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        html { scroll-behavior: smooth; }
+        .gold-gradient { background: linear-gradient(45deg, #D4AF37, #F9E2AF); }
+        .insta-gradient { 
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+        }
+        .insta-hover:hover {
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+            color: white !important;
+            border-color: transparent !important;
+        }
+        .text-gold { color: #D4AF37; }
+        .booking-bg {
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
+                        url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&q=80&w=1920');
+            background-size: cover; background-position: center; background-attachment: fixed;
+        }
+        .service-active {
+            border-color: #D4AF37 !important;
+            background-color: white !important;
+            color: #D4AF37 !important;
+            box-shadow: 0 4px 10px rgba(212, 175, 55, 0.2);
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            display: flex;
+            width: fit-content;
+            animation: marquee 12s linear infinite;
+        }
+        .marquee-container {
+            overflow: hidden;
+            width: 100%;
+            background: #fffdfa;
+            display: flex;
+            align-items: center;
+        }
+        @keyframes pulse-red {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(220, 38, 38, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+        }
+        .pulse { animation: pulse-red 2s infinite; }
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 16px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background-color: #128c7e;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-stone-50 text-stone-900 font-sans">
 
-    <h1>Hello World 🌍</h1>
-    <button onclick="showMessage()">Click Me</button>
+    <a href="https://wa.me/+919911642274" target="_blank" class="whatsapp-float">
+        <i class="fab fa-whatsapp mr-2 text-2xl"></i>
+        <span class="font-bold uppercase tracking-widest text-[10px]">Chat with me</span>
+    </a>
 
-    <script src="script.js"></script>
+    <nav class="bg-white/95 backdrop-blur-md sticky top-0 z-50 border-b border-stone-100">
+        <div class="max-w-7xl mx-auto px-6 md:px-10 flex justify-between items-center h-20">
+            <h1 class="text-xl md:text-2xl font-serif font-bold tracking-tighter text-gold uppercase">Nutan Glam Zone</h1>
+            <div class="hidden md:flex items-center space-x-8 font-medium text-[10px] tracking-[0.2em] uppercase text-stone-600">
+                <a href="#about" class="hover:text-gold transition font-bold">About</a>
+                <a href="#certifications" class="hover:text-gold transition font-bold">Certifications</a>
+                <a href="#refer" class="hover:text-gold transition font-bold">Refer & Earn</a>
+                <a href="#gallery" class="hover:text-gold transition font-bold">Gallery</a>
+                <a href="#booking" class="bg-stone-900 text-white px-6 py-2.5 rounded-full hover:bg-gold transition shadow-lg">Book Now</a>
+            </div>
+            <button onclick="toggleMenu()" class="md:hidden text-stone-800"><i class="fas fa-bars text-xl"></i></button>
+        </div>
+        <div id="mobileMenu" class="hidden md:hidden bg-white px-6 py-4 space-y-4 text-center border-t">
+            <a href="#about" onclick="toggleMenu()" class="block text-xs tracking-widest uppercase text-stone-600">About</a>
+            <a href="#certifications" onclick="toggleMenu()" class="block text-xs tracking-widest uppercase text-stone-600">Certifications</a>
+            <a href="#refer" onclick="toggleMenu()" class="block text-xs tracking-widest uppercase text-stone-600">Refer & Earn</a>
+            <a href="#booking" onclick="toggleMenu()" class="block text-xs tracking-widest uppercase text-gold font-bold">Book Now</a>
+        </div>
+    </nav>
+
+    <section class="min-h-[80vh] flex flex-col justify-center items-center text-center px-4 bg-[#fdfcfb] relative py-12">
+        <div class="mb-6 flex items-center bg-red-50 text-red-600 px-4 py-1.5 rounded-full text-[10px] font-bold tracking-widest uppercase border border-red-100">
+            <span class="w-2 h-2 bg-red-600 rounded-full mr-2 pulse"></span> Hurry! Slots are Limited for Wedding Season 2026
+        </div>
+        <h2 class="text-5xl md:text-8xl font-serif mb-4 italic text-stone-800 tracking-tighter">The Art of Glam</h2>
+        <p class="text-sm md:text-lg text-stone-500 mb-10 max-w-2xl font-light tracking-widest uppercase italic font-bold">Lakmé Academy Certified Artist</p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 items-center">
+            <a href="#booking" class="gold-gradient text-white px-12 py-5 rounded-full font-bold uppercase tracking-widest shadow-2xl hover:scale-105 transition-all">Secure Your Date</a>
+            <a href="https://www.instagram.com/nutan_glam_zone" target="_blank" class="flex items-center space-x-2 border-2 border-stone-800 text-stone-800 px-8 py-5 rounded-full font-bold uppercase tracking-widest transition-all insta-hover">
+                <i class="fab fa-instagram text-xl"></i>
+                <span>Follow on Instagram</span>
+            </a>
+        </div>
+    </section>
+
+    <div class="marquee-container py-5 border-y border-gold/30 shadow-inner">
+        <div class="animate-marquee flex items-center">
+            <span class="text-stone-400 font-black uppercase tracking-[0.3em] text-[10px] md:text-xs italic mx-12">✨ SPECIAL DISCOUNT AVAILABLE</span>
+            <span class="text-gold font-serif text-lg md:text-xl px-4 py-1 border-2 border-gold rounded-lg mx-12">CODE: GlamWithNutan</span>
+            <span class="text-stone-400 font-black uppercase tracking-[0.3em] text-[10px] md:text-xs italic mx-12">✨ LIMITED TIME OFFER</span>
+            <span class="text-stone-400 font-black uppercase tracking-[0.3em] text-[10px] md:text-xs italic mx-12">✨ SPECIAL DISCOUNT AVAILABLE</span>
+            <span class="text-gold font-serif text-lg md:text-xl px-4 py-1 border-2 border-gold rounded-lg mx-12">PROMO CODE : GlamWithNutan</span>
+        </div>
+    </div>
+
+    <section id="about" class="py-20 px-6 max-w-6xl mx-auto">
+        <div class="flex flex-wrap justify-center gap-6 mb-16 text-center">
+            <div class="bg-white p-8 rounded-3xl border border-stone-100 min-w-[220px] shadow-sm">
+                <p class="text-4xl font-serif text-gold font-bold mb-1"><span class="counter" data-target="500">0</span>+</p>
+                <p class="text-[10px] uppercase tracking-widest font-bold text-stone-400">Brides Styled</p>
+            </div>
+            <div class="bg-white p-8 rounded-3xl border border-stone-100 min-w-[220px] shadow-sm">
+                <p class="text-4xl font-serif text-gold font-bold mb-1"><span class="counter" data-target="100">0</span>%</p>
+                <p class="text-[10px] uppercase tracking-widest font-bold text-stone-400">Hygiene Focus</p>
+            </div>
+        </div>
+        <div class="text-center max-w-3xl mx-auto">
+            <h3 class="text-3xl font-serif mb-6 text-gold italic uppercase">Meet Nutan</h3>
+            <p class="text-lg text-stone-700 leading-relaxed font-light mb-4 italic">
+                I am a professional makeup artist <strong>certified by Lakmé Academy</strong> with extensive <strong>experience in premium professional parlors</strong>.
+            </p>
+            <p class="text-lg text-stone-600 leading-relaxed font-light">
+                Mastering the art of the <strong>Indian Bridal Look</strong>, I specialize in long-lasting, high-definition makeup that enhances your natural elegance for your most precious moments.
+            </p>
+        </div>
+    </section>
+
+    <section id="certifications" class="py-16 bg-stone-100 px-6 text-center">
+        <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-6 text-stone-500 uppercase text-[10px] tracking-[0.2em] font-bold">
+            <div class="p-8 bg-white rounded-2xl shadow-sm border-b-2 border-gold flex flex-col items-center">
+                <i class="fas fa-certificate text-gold text-2xl mb-4"></i> Lakmé Certified
+            </div>
+            <div class="p-8 bg-white rounded-2xl shadow-sm border-b-2 border-gold flex flex-col items-center">
+                <i class="fas fa-scissors text-gold text-2xl mb-4"></i> Parlor Expertise
+            </div>
+            <div class="p-8 bg-white rounded-2xl shadow-sm border-b-2 border-gold flex flex-col items-center">
+                <i class="fas fa-gem text-gold text-2xl mb-4"></i> Luxury Products
+            </div>
+        </div>
+    </section>
+
+    <section id="refer" class="py-20 insta-gradient text-white text-center">
+        <div class="max-w-4xl mx-auto px-6">
+            <h3 class="text-4xl font-serif text-white italic mb-4 drop-shadow-md">Refer & Earn</h3>
+            <p class="text-white/90 font-light tracking-wide italic mb-8 text-lg">Share the beauty! Refer a friend and get a FREE Party Glam or Engagement look for yourself.</p>
+            <a href="#booking" class="inline-block bg-white text-stone-800 px-10 py-4 rounded-full font-black uppercase text-[12px] tracking-widest shadow-xl hover:bg-stone-100 transition">Get Referral Details</a>
+        </div>
+    </section>
+
+    <section id="gallery" class="py-24 px-6 max-w-7xl mx-auto">
+        <h3 class="text-2xl font-serif mb-12 text-center uppercase tracking-widest text-stone-400 font-bold">Portfolio Highlights</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="h-96 rounded-xl relative group overflow-hidden shadow-lg">
+                <img src="https://images.unsplash.com/flagged/photo-1551854716-8b811be39e7e?q=80&w=600" class="absolute inset-0 w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/30 flex items-end p-6"><span class="text-white font-serif italic text-lg">Indian Bridal</span></div>
+            </div>
+            <div class="h-96 rounded-xl relative group overflow-hidden shadow-lg">
+                <img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&q=80&w=600" class="absolute inset-0 w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/30 flex items-end p-6"><span class="text-white font-serif italic text-lg">Party Glam</span></div>
+            </div>
+            <div class="h-96 rounded-xl relative group overflow-hidden shadow-lg">
+                <img src="https://images.unsplash.com/photo-1596704017254-9b121068fb31?auto=format&fit=crop&q=80&w=600" class="absolute inset-0 w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/30 flex items-end p-6"><span class="text-white font-serif italic text-lg">Editorial Art</span></div>
+            </div>
+            <div class="h-96 rounded-xl relative group overflow-hidden shadow-lg">
+                <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&q=80&w=600" class="absolute inset-0 w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/30 flex items-end p-6"><span class="text-white font-serif italic text-lg">Reception Glow</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="booking" class="py-24 booking-bg px-6">
+        <div class="max-w-5xl mx-auto">
+            <div class="bg-white/95 backdrop-blur rounded-[40px] shadow-2xl overflow-hidden flex flex-col md:flex-row border border-white">
+                <div class="md:w-5/12 gold-gradient p-12 text-white flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-4xl font-serif mb-6 leading-tight uppercase tracking-tighter">Book Your<br>Transformation</h3>
+                        <p class="text-stone-100 mb-8 font-light italic tracking-wide">Use code <span class="font-bold underline uppercase">GlamWithNutan</span> for a special offer.</p>
+                        <div class="space-y-4 text-xs font-bold uppercase tracking-widest">
+                            <p><i class="fas fa-gem mr-2"></i> Premium Global Brands</p>
+                            <p><i class="fas fa-camera mr-2"></i> 4K Camera Ready</p>
+                        </div>
+                    </div>
+                    <div class="mt-12 pt-8 border-t border-white/20 text-center">
+                        <a href="https://www.instagram.com/nutan_glam_zone" target="_blank" class="text-xl font-bold font-serif underline italic">@nutan_glam_zone</a>
+                    </div>
+                </div>
+
+                <div class="md:w-7/12 p-8 md:p-12">
+                    <form id="bookingForm" class="space-y-6">
+                        <div>
+                            <label class="text-xs font-black tracking-widest text-stone-400 mb-4 block uppercase italic font-bold">1. Select Event Type</label>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div id="btn-bridal" onclick="selectService('Bridal Glam', 'btn-bridal')" class="p-3 border-2 border-stone-100 rounded-xl text-center cursor-pointer font-bold text-stone-400 text-xs service-active">Bridal Glam</div>
+                                <div id="btn-engagement" onclick="selectService('Engagement', 'btn-engagement')" class="p-3 border-2 border-stone-100 rounded-xl text-center cursor-pointer font-bold text-stone-400 text-xs">Engagement</div>
+                                <div id="btn-reception" onclick="selectService('Reception', 'btn-reception')" class="p-3 border-2 border-stone-100 rounded-xl text-center cursor-pointer font-bold text-stone-400 text-xs">Reception</div>
+                                <div id="btn-party" onclick="selectService('Party Look', 'btn-party')" class="p-3 border-2 border-stone-100 rounded-xl text-center cursor-pointer font-bold text-stone-400 text-xs">Party Look</div>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <input type="text" id="name" required placeholder="Full Name" class="w-full pb-2 border-b border-stone-200 outline-none bg-transparent">
+                            <input type="tel" id="phone" required placeholder="Phone Number" class="w-full pb-2 border-b border-stone-200 outline-none bg-transparent">
+                            <input type="text" id="promo" placeholder="Promo Code (Optional)" class="w-full pb-2 border-b border-stone-200 outline-none bg-transparent">
+                            <input type="hidden" id="selectedService" value="Bridal Glam">
+                        </div>
+                        <button id="submitBtn" type="submit" class="w-full py-4 text-white font-bold uppercase rounded-xl bg-stone-900 hover:bg-gold transition">Confirm Booking</button>
+                        <p id="successMsg" class="hidden text-green-600 text-center font-bold uppercase tracking-widest">Booking Confirmed!</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-8 px-6 bg-stone-900 text-white text-center text-xs">
+        &copy; 2026 Nutan Glam Zone. All Rights Reserved.
+    </footer>
+
+    <script>
+        function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('hidden'); }
+
+        function selectService(val, id) {
+            const btns = ['btn-bridal','btn-engagement','btn-reception','btn-party'];
+            btns.forEach(b => document.getElementById(b).classList.remove('service-active'));
+            document.getElementById(id).classList.add('service-active');
+            document.getElementById('selectedService').value = val;
+        }
+
+        const form = document.getElementById('bookingForm');
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxl0bS4c2iwGvhrpet3RE7cD8lmOxJ6QqrimvK4HuzUHyvbLdvOjaqRN2Y9sCQRxqo2qQ/exec';
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            btn.disabled = true;
+            btn.innerText = "Processing...";
+
+            const data = {
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                service: document.getElementById('selectedService').value,
+                promo: document.getElementById('promo').value
+            };
+
+            fetch(scriptURL, {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {'Content-Type': 'text/plain;charset=utf-8'},
+            })
+            .then(() => {
+                form.classList.add('hidden');
+                document.getElementById('successMsg').classList.remove('hidden');
+                setTimeout(() => {
+                    window.top.location.href = "https://chat.whatsapp.com/Ezs5S2YF99T0VYeAfAJi1d?mode=gi_t";
+                }, 1500);
+            })
+            .catch(() => {
+                alert("Something went wrong. Please try again.");
+                btn.disabled = false;
+                btn.innerText = "Confirm Booking";
+            });
+        });
+    </script>
 </body>
 </html>
